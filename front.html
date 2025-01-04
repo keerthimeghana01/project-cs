@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Website Vulnerability Scanner</h1>
+    <label for="url">Enter URL to scan:</label>
+    <input type="text" id="url" placeholder="https://example.com" required>
+    <button id="scanButton">Scan</button>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('scanButton').addEventListener('click', function() {
+            const url = document.getElementById('url').value;
+            // Simulate a scan result
+            const vulnerabilities = simulateScan(url);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Clear previous results
+
+            if (vulnerabilities.length > 0) {
+                resultDiv.innerHTML = '<strong>Vulnerabilities Found:</strong><ul>' + 
+                    vulnerabilities.map(vuln => '<li>' + vuln + '</li>').join('') + 
+                    '</ul>';
+            } else {
+                resultDiv.innerHTML = '<strong>Result:</strong> The website is safe with no vulnerabilities.';
+            }
+        });
+
+        function simulateScan(url) {
+            // This function simulates scanning and returns an array of vulnerabilities
+            // In a real application, you would replace this with actual scanning logic
+            const dummyVulnerabilities = ['SQL Injection', 'XSS'];
+            return Math.random() > 0.5 ? dummyVulnerabilities : [];
+        }
+    </script>
+
+</body>
+</html>
